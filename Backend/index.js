@@ -7,26 +7,19 @@ const SystemRoute = require('./routes/systemRoutes');
 
 //---------------------------------------------------------
 
-// Middleware and other configurations...
-app.use(express.json()); // For parsing application/json
-app.use(express.static(path.join(__dirname, 'public'))); // Serve static files from the 'public' directory
+const app = express();
+app.use(cors());
 
-// Ignore /favicon.ico requests
-app.get('/favicon.ico', (req, res) => res.status(204));
+app.use(express.json());
 
-// Root route handler for /api/v1
-app.get('/api/v1', (req, res) => {
-    res.send('Server is running');
+app.use('/api/v1', (req, res, next) => {
+    if (req.path === '/') {
+        res.send('Server is running');
+        console.log("Server is running on ${port}")
+    } else {
+        next();
+    }
 });
-
-// Use the SystemRoute for other /api/v1 routes
-app.use('/api/v1', SystemRoute);
-
-// Catch-all route for undefined routes
-app.use((req, res) => {
-    res.status(404).send('Not Found');
-});
-
 
 //---------------------------------------------------------
 app.use('/api/v1/', SystemRoute);
