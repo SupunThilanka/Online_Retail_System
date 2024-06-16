@@ -18,10 +18,14 @@ app.use('/api/v1/', SystemRoute);
 //---------------------------------------------------------
 
 
+const port = process.env.PORT || 8080; 
 
 
-
-app.listen(8081,()=>{
+app.listen(port,()=>{
     console.log("Listning on port:8081")
 });
+
+// app.listen(8081,()=>{
+//     console.log("Listning on port:8081")
+// });
 
