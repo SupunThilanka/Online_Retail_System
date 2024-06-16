@@ -14,7 +14,7 @@ app.use(express.json());
 
 app.use('/api/v1', (req, res, next) => {
     if (req.path === '/') {
-        res.send('Server is running');
+        res.send('Server is running on ${port}');
         console.log("Server is running on ${port}")
     } else {
         next();
