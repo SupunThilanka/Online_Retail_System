@@ -22,7 +22,7 @@ const port = process.env.PORT || 8080;
 
 
 app.listen(port,()=>{
-    console.log("Listning on port:8081")
+    console.log("Server is running")
 });
 
 // app.listen(8081,()=>{
