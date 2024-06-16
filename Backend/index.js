@@ -13,6 +13,14 @@ app.use(cors());
 
 app.use(express.json());
 
+app.use('/api/v1', (req, res, next) => {
+    if (req.path === '/') {
+        res.send('Server is running');
+    } else {
+        next();
+    }
+});
+
 //---------------------------------------------------------
 app.use('/api/v1/', SystemRoute);
 //---------------------------------------------------------
@@ -21,7 +29,7 @@ app.use('/api/v1/', SystemRoute);
 const port = process.env.PORT || 8080; 
 
 
-app.listen(8801,()=>{
+app.listen(port,()=>{
     console.log("Server is running")
 });
 
