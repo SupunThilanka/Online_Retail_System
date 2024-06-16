@@ -7,6 +7,8 @@ const SystemRoute = require('./routes/systemRoutes');
 
 //---------------------------------------------------------
 
+// Ignore /favicon.ico requests
+app.get('/favicon.ico', (req, res) => res.status(204));
 
 const app = express();
 app.use(cors());
