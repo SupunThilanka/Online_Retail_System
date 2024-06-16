@@ -1,41 +1,32 @@
 const express = require('express');
 const cors = require('cors');
-require('dotenv').config()
-//--------------------------------------------------------
+require('dotenv').config();
 const SystemRoute = require('./routes/systemRoutes');
 
-
-//---------------------------------------------------------
-
 const app = express();
-app.use(cors());
+const port = process.env.PORT || 8081;
 
+app.use(cors());
 app.use(express.json());
 
-app.use('/api/v1', (req, res, next) => {
-    if (req.path === '/') {
-        res.send('Server is running on ${port}');
-        console.log("Server is running on ${port}")
-    } else {
-        next();
-    }
+// Middleware to handle /favicon.ico request
+app.get('/favicon.ico', (req, res) => res.status(204));
+
+// Root route handler for /api/v1
+app.get('/api/v1', (req, res) => {
+    res.send('Server is running');
 });
 
-//---------------------------------------------------------
-app.use('/api/v1/', SystemRoute);
-//---------------------------------------------------------
+// Use the SystemRoute for other /api/v1 routes
+app.use('/api/v1', SystemRoute);
 
-
-const port = process.env.PORT || 8081; 
-
-
-app.listen(port,()=>{
-    console.log("Server is running on ${port}")
+// Catch-all route for undefined routes
+app.use((req, res) => {
+    res.status(404).send('Not Found');
 });
 
-// app.listen(8081,()=>{
-//     console.log("Listning on port:8081")
-// });
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+});
 
 module.exports = app;
-
