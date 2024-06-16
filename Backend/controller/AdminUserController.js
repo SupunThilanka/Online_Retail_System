@@ -1,7 +1,7 @@
 // controllers/customerController.js
 const CustomerModel = require('../model/AdminUserModel');
 const db = require('../database');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 async function createCustomer(req, res) {

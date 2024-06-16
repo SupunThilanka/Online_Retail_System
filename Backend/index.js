@@ -29,5 +29,5 @@ app.listen(port,()=>{
 //     console.log("Listning on port:8081")
 // });
 
-// module.exports = app;
+module.exports = app;
 

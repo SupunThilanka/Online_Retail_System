@@ -10,11 +10,11 @@
   "author": "group05",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
-    "expres": "^0.0.5",
-    "express": "^4.18.2",
-    "exprss": "^0.0.1-security",
+    "express": "^4.19.2",
     "frequent-itemset": "^1.0.5",
     "mssql": "^9.1.3",
     "mysql": "^2.18.1",
@@ -22,7 +22,10 @@
     "nodemon": "^3.0.1"
   },
   "devDependencies": {
-    "bcrypt": "^5.1.1",
     "jsonwebtoken": "^9.0.1"
+  },
+  "engines": {
+    "node": ">=14.x"
   }
 }
+
