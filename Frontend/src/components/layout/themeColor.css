@@ -1,0 +1,14 @@
+.custom-text-warning {
+    color: rgb(10, 10, 10); 
+}
+.custom-btn-warning{
+    background-color: #eacd2c !important;
+}
+.custom-btn-primary{
+    background-color: #eacd2c!important;
+    border: #2dddd4!important;
+}
+
+.custom-btn-primary:hover{
+    color: grey!important;
+}
