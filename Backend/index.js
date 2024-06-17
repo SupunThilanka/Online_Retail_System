@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 require('dotenv').config();
-const SystemRoute = require('./routes/systemRoutes');
+const SystemRoute = require('./routes/systemRoutes').default;
 
 const app = express();
 const port = process.env.PORT || 8081;
