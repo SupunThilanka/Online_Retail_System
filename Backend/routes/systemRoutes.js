@@ -1,61 +1,61 @@
-import { Router } from 'express';
-const router = Router();
+const express = require('express');
+const router = express.Router();
 
-import { getProduct, addToCart } from '../controller/ProductDetailsController';
+const ProductDetailsController = require('../controller/ProductDetailsController')
 
-import { createCustomer, LoginUser, getSeller, verifyToken, updateUser, setAsSeller } from '../controller/AdminUserController';
-import { getCategory, addProduct, getAllProductsFromSeller, updateProduct, deleteProduct, getTopSellingProducts, getNewlyAddedProducts, getProductsByCategory, getproductcount, getProductsByMainCategory } from '../controller/ProductController';
-import { getCart, getCartDetails, deleteCartItem, changeQty, checkCart, cartSize } from '../controller/CartController';
-import { getCustomerOrders, getSalesAmount, getOrders, getOrderItems, updateTracking, updateStatus, deleteOrder, getcustomerinfo, putOrder } from '../controller/OrderController';
-import { getReccomnederProduct } from '../controller/RecomenderSystemComtroller';
+const customerController = require('../controller/AdminUserController');
+const productController = require('../controller/ProductController');
+const CartController = require('../controller/CartController')
+const OrderController = require('../controller/OrderController')
+const RecomenderSystemComtroller = require('../controller/RecomenderSystemComtroller')
 
 //const apriory = require('../controller/RecomenderSystemComtroller')
 
-router.post('/registerUser', createCustomer);
-router.post('/loginUser', LoginUser);
-router.get('/getSeller', getSeller);
-router.get('/verifyToken', verifyToken);
+router.post('/registerUser', customerController.createCustomer);
+router.post('/loginUser', customerController.LoginUser);
+router.get('/getSeller', customerController.getSeller);
+router.get('/verifyToken', customerController.verifyToken);
 
-router.get('/getCategory',getCategory);
-router.post('/addProduct',addProduct);
-router.get('/getAllProductsFromSeller',getAllProductsFromSeller)
-router.put('/updateProduct/:id',updateProduct)
-router.delete('/deleteProduct/:id',deleteProduct)
+router.get('/getCategory',productController.getCategory);
+router.post('/addProduct',productController.addProduct);
+router.get('/getAllProductsFromSeller',productController.getAllProductsFromSeller)
+router.put('/updateProduct/:id',productController.updateProduct)
+router.delete('/deleteProduct/:id',productController.deleteProduct)
 
-router.get('/getCustomerOrders',getCustomerOrders)
+router.get('/getCustomerOrders',OrderController.getCustomerOrders)
 
-router.get('/sales',getSalesAmount)
+router.get('/sales',OrderController.getSalesAmount)
 
-router.get('/getOrders',getOrders)
-router.get('/getOrderItems',getOrderItems)
-router.put('/updateTracking',updateTracking)
-router.put('/updateOrderStatus',updateStatus)
-router.delete('/deleteOrder/:id',deleteOrder)
-router.post('/customer',getcustomerinfo)
-router.post('/putorder',putOrder)
+router.get('/getOrders',OrderController.getOrders)
+router.get('/getOrderItems',OrderController.getOrderItems)
+router.put('/updateTracking',OrderController.updateTracking)
+router.put('/updateOrderStatus',OrderController.updateStatus)
+router.delete('/deleteOrder/:id',OrderController.deleteOrder)
+router.post('/customer',OrderController.getcustomerinfo)
+router.post('/putorder',OrderController.putOrder)
 
-router.put('/updateCustomer/:id',updateUser)
-router.post('/setAsSeller/:id',setAsSeller)
+router.put('/updateCustomer/:id',customerController.updateUser)
+router.post('/setAsSeller/:id',customerController.setAsSeller)
 
-router.get('/top-selling-products', getTopSellingProducts); 
-router.get('/newly-added-products', getNewlyAddedProducts);
-router.get('/products/:categoryId/:subcategoryId', getProductsByCategory) 
-router.get('/categoryCount/:categoryId',getproductcount);
+router.get('/top-selling-products', productController.getTopSellingProducts); 
+router.get('/newly-added-products', productController.getNewlyAddedProducts);
+router.get('/products/:categoryId/:subcategoryId', productController.getProductsByCategory) 
+router.get('/categoryCount/:categoryId',productController.getproductcount);
 
-router.get('/:categoryName/:categoryID/:count',getProductsByMainCategory);
+router.get('/:categoryName/:categoryID/:count',productController.getProductsByMainCategory);
 
-router.get('/product/:id', getProduct); 
-router.post('/product', addToCart)
+router.get('/product/:id', ProductDetailsController.getProduct); 
+router.post('/product', ProductDetailsController.addToCart)
 
-router.post('/cart', getCart);
-router.get('/cart/:id', getCartDetails);
-router.delete('/cart', deleteCartItem);
-router.put('/cart/:id', changeQty);
-router.post('/checkcart', checkCart);
-router.get('/cartsize/:id',cartSize)
+router.post('/cart', CartController.getCart);
+router.get('/cart/:id', CartController.getCartDetails);
+router.delete('/cart', CartController.deleteCartItem);
+router.put('/cart/:id', CartController.changeQty);
+router.post('/checkcart', CartController.checkCart);
+router.get('/cartsize/:id',CartController.cartSize)
 
-router.get('/productRCMND/:id', getReccomnederProduct)
+router.get('/productRCMND/:id', RecomenderSystemComtroller.getReccomnederProduct)
 
 
 
-export default router;
+module.exports = router;
