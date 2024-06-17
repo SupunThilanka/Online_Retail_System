@@ -69,7 +69,7 @@ async function LoginUser(req,res){
                     if (finalresult) {
                         const token = jwt.sign(
                             {email: email, id: data[0].customerID},
-                            process.env.JWT_SECRET, {expiresIn: '24h'}
+                            process.env.JWT_ACCOUNT, {expiresIn: '24h'}
                         );
 
                         console.log('Logged In');
